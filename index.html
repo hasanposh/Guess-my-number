@@ -15,23 +15,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- custom styles -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        .font-2pregular{
-            font-family: "Press Start 2P", system-ui;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+      .font-2pregular {
+        font-family: "Press Start 2P", system-ui;
+      }
     </style>
   </head>
-  <body > 
-    <div class="font-2pregular min-h-screen bg-gray-900 text-white">
-        <div class="flex justify-between items-center p-8">
-            <button class="p-4 text-2xl bg-white text-black">Again</button>
-            <p>(Between 1 and 20)</p>
+  <body class="font-2pregular min-h-screen bg-gray-900 text-white">
+    <div class="flex justify-between items-center p-8">
+        <button class="p-4 text-2xl bg-white text-black">Again</button>
+        <p>(Between 1 and 20)</p>
+      </div>
+      <h1 class="text-center text-5xl py-6">Guess My Number!</h1>
+      <hr class="bg-white h-2 mt-32" />
+      <div id="display-number"
+        class="bg-white w-1/6 h-28 text-black text-7xl items-center flex justify-center -translate-y-16 mx-auto"
+      >
+        ?
+      </div>
+      <div class="flex flex-col lg:flex-row justify-around gap-6">
+        <div class="flex flex-col items-center gap-10 flex-1">
+          <div class="border-white border-2 w-2/4 lg:w-1/4">
+            <input id="input-field"
+            type="number"
+            class="input-lg h-24 w-full text-center text-6xl bg-transparent "
+          />
+          </div>
+          <button id="check-btn" class="p-4 text-2xl bg-white text-black">Check!</button>
         </div>
-        <h1 class="text-center text-5xl py-6">Guess My Number!</h1>
-        <div>
-            
+        <div class="space-y-3 flex flex-col justify-between text-xl flex-1 px-4 lg:p-0">
+          <p id="start-guess">Start guessing...</p>
+          <div class="space-y-3">
+            <p>💯 Score: <span id="score">20</span></p>
+            <p>🥇 Highscore: <span id="high-score">0</span></p>
+          </div>
         </div>
-    </div>
-
+      </div>
+    <script src="script.js"></script>
   </body>
 </html>

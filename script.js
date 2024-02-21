@@ -1,32 +1,47 @@
-const inputNumberText = document.getElementById('input-field')
-const displayNumber = document.getElementById('display-number')
 let scoreCount = document.getElementById('score')
 let highScoreElemnt = document.getElementById('high-score')
-let highScore = 0; 
+const randomNumber = Math.trunc(Math.random() * 20) + 1;
+let highScore = 0;
 let score = 20;
-// console.log(inputNumber)
-const randomNumber = Math.trunc(Math.random()*20) + 1;
+document.getElementById('check-btn').addEventListener('click', function () {
+    const inputNumberField = document.getElementById('input-field')
+    const displayNumber = document.getElementById('display-number')
+    const guessingText = document.getElementById('guess-number')
 
-document.getElementById('check-btn').addEventListener('click',function(){
-    const inputNumber = parseInt(inputNumberText.value)
-    console.log(inputNumber)
+    let inputNumberValue = inputNumberField.value
+    const inputNumber = parseInt(inputNumberValue)
+    console.log(inputNumberValue.length, inputNumberValue)
     scoreCount.innerText = score;
 
-
-    console.log(inputNumber)
-    score--;
-
-    displayNumber.innerText = randomNumber;
-    if(inputNumber == randomNumber){
-        document.body.style.backgroundColor = 'red'
-        highScoreElemnt.innerText = score
+    
+    if (inputNumberValue.length < 1) {
+        guessingText.innerText = "⛔️ No number!"
     }
-    console.log(randomNumber)
-
+    else if(score===highScore){
+        return
+    }
+    else if (inputNumber == randomNumber) {
+        document.body.style.backgroundColor = 'red'
+        guessingText.innerText = "🎉 Correct Number!"
+        displayNumber.innerText = randomNumber;
+        highScoreElemnt.innerText = score;
+        highScore = score
+        return
+    }
+    else if (inputNumber < randomNumber) {
+        guessingText.innerText = "📉 Too low!"
+    }
+    else {
+        guessingText.innerText = "📈 Too high!"
+    }
+    score--;
 })
 
-// function generateRandomNumber(){
-//     // let number = 0;
-//     const number = Math.trunc(Math.random()*20) + 1;
-//     return number;
-// }
+function againBtn(){
+    document.getElementById('display-number').innerText = "?";
+    document.getElementById('input-field').value = "";
+    document.getElementById('guess-number').innerText = "Start guessing...";
+    document.getElementById('score').innerText = "20";
+    document.body.style.backgroundColor = 'gray'
+
+}

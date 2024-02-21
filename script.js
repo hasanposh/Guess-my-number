@@ -12,7 +12,7 @@ document.getElementById('check-btn').addEventListener('click', function () {
     const inputNumber = parseInt(inputNumberValue)
     // console.log(inputNumberValue.length, inputNumberValue)
     scoreCount.innerText = score;
-    displayNumber.innerText = randomNumber;
+    // displayNumber.innerText = randomNumber;
 
     if (!inputNumber) {
         guessingText.innerText = "⛔️ No number!"

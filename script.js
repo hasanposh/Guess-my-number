@@ -21,7 +21,7 @@ document.getElementById('check-btn').addEventListener('click', function () {
         return
     }
     else if (inputNumber == randomNumber) {
-        document.body.style.backgroundColor = 'red'
+        document.body.style.backgroundColor = 'tomato'
         guessingText.innerText = "🎉 Correct Number!"
         displayNumber.innerText = randomNumber;
         highScoreElemnt.innerText = score;
@@ -41,7 +41,8 @@ function againBtn(){
     document.getElementById('display-number').innerText = "?";
     document.getElementById('input-field').value = "";
     document.getElementById('guess-number').innerText = "Start guessing...";
-    document.getElementById('score').innerText = "20";
+    score = 20;
+    document.getElementById('score').innerText = score;
     document.body.style.backgroundColor = 'gray'
 
 }

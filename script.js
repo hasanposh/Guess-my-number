@@ -1,6 +1,6 @@
 let scoreCount = document.getElementById('score')
 let highScoreElemnt = document.getElementById('high-score')
-const randomNumber = Math.trunc(Math.random() * 20) + 1;
+let randomNumber = Math.trunc(Math.random() * 20) + 1;
 let highScore = 0;
 let score = 20;
 document.getElementById('check-btn').addEventListener('click', function () {
@@ -10,39 +10,51 @@ document.getElementById('check-btn').addEventListener('click', function () {
 
     let inputNumberValue = inputNumberField.value
     const inputNumber = parseInt(inputNumberValue)
-    console.log(inputNumberValue.length, inputNumberValue)
+    // console.log(inputNumberValue.length, inputNumberValue)
     scoreCount.innerText = score;
+    displayNumber.innerText = randomNumber;
 
-    
-    if (inputNumberValue.length < 1) {
+    if (!inputNumber) {
         guessingText.innerText = "⛔️ No number!"
     }
-    else if(score===highScore){
-        return
-    }
-    else if (inputNumber == randomNumber) {
+    else if (inputNumber === randomNumber) {
         document.body.style.backgroundColor = 'tomato'
         guessingText.innerText = "🎉 Correct Number!"
         displayNumber.innerText = randomNumber;
-        highScoreElemnt.innerText = score;
-        highScore = score
-        return
+
+        if (score > highScore) {
+            highScore = score;
+            highScoreElemnt.innerText = score;
+        }
     }
-    else if (inputNumber < randomNumber) {
-        guessingText.innerText = "📉 Too low!"
+    else if (inputNumber !== randomNumber) {
+        if(score > 1){
+            if (inputNumber < randomNumber) {
+                guessingText.innerText = "📉 Too low!"
+                score--;
+            }
+            else if (inputNumber > randomNumber) {
+                guessingText.innerText = "📈 Too high!"
+                score--;
+            }
+        }
+        else {
+            score = 0;
+            guessingText.innerText = "💥 You lost the game!"
+        }
     }
-    else {
-        guessingText.innerText = "📈 Too high!"
-    }
-    score--;
+
+
 })
 
-function againBtn(){
+function againBtn() {
+    // console.log('hello')
+    score = 20;
+    randomNumber = Math.trunc(Math.random() * 20) + 1;
     document.getElementById('display-number').innerText = "?";
     document.getElementById('input-field').value = "";
     document.getElementById('guess-number').innerText = "Start guessing...";
-    score = 20;
     document.getElementById('score').innerText = score;
-    document.body.style.backgroundColor = 'gray'
+    document.body.style.backgroundColor = 'gray';
 
 }
